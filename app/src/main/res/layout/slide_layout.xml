@@ -2,7 +2,6 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/slideLayoutConstraint"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -12,6 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="84dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/img1" />
@@ -20,19 +20,23 @@
         android:id="@+id/headingTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="33dp"
         android:layout_marginTop="37dp"
+        android:textColor="@color/colorWhite"
         android:text="Heading"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="@+id/imageIV"
         app:layout_constraintStart_toStartOf="@+id/imageIV"
         app:layout_constraintTop_toBottomOf="@+id/imageIV" />
 
     <TextView
         android:id="@+id/descTV"
+        android:layout_marginTop="43dp"
         android:layout_width="0dp"
+        android:textColor="@color/colorWhite"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="44dp"
+        android:textSize="18sp"
         android:text="Lorem ipsum dolor sit amet, an eius reformidans vel. Eu mea nostro sadipscing interpretaris. Id nam wisi tation ponderum, vis cu graeci antiopam. Et usu quidam fastidii delicatissimi, tempor repudiare concludaturque sea at, et mea vocibus maiestatis."
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
