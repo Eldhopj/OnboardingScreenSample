@@ -4,6 +4,7 @@ package com.example.eldho.onboardingscreensample;
  * Create slider Adapter
  * Initialize the sliderAdapter
  * Create dot indicator
+ * Intilize button and button function and logic
  */
 
 import android.os.Bundle;
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private Button mPrev, mNext;
 
     private int mCurrentPage;
+
     //Indicates the dot change in color according to the pages
     ViewPager.OnPageChangeListener viewListener = new ViewPager.OnPageChangeListener() {
         @Override
