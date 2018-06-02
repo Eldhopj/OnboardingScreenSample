@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
+import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -22,7 +24,9 @@ public class MainActivity extends AppCompatActivity {
 
     private SliderAdapter sliderAdapter;
 
+    private Button mPrev, mNext;
 
+    private int mCurrentPage;
     //Indicates the dot change in color according to the pages
     ViewPager.OnPageChangeListener viewListener = new ViewPager.OnPageChangeListener() {
         @Override
@@ -33,6 +37,28 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onPageSelected(int position) {
             addDotIndicator(position);
+            mCurrentPage = position;
+
+            //logic inside the next and prev buttons
+            if (position == 0) {
+//                mNext.setEnabled(true);
+                mPrev.setEnabled(false);
+//                mPrev.setVisibility(View.INVISIBLE);
+                mNext.setText("Next");
+                mPrev.setText("");
+            } else if (position == mDots.length - 1) { /** logic inside finish button this is an important part*/
+//                mNext.setEnabled(true);
+                mPrev.setEnabled(true);
+                mPrev.setVisibility(View.VISIBLE);
+                mNext.setText("Finish");
+                mPrev.setText("Back");
+            } else {
+//                mNext.setEnabled(true);
+                mPrev.setEnabled(true);
+                mPrev.setVisibility(View.VISIBLE);
+                mNext.setText("Next");
+                mPrev.setText("Back");
+            }
         }
 
         @Override
@@ -40,21 +66,6 @@ public class MainActivity extends AppCompatActivity {
 
         }
     };
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        mSlideViewpager = findViewById(R.id.mainVP);
-        mDotLayout = findViewById(R.id.dotsLL);
-
-        sliderAdapter = new SliderAdapter(this);
-        mSlideViewpager.setAdapter(sliderAdapter);
-        addDotIndicator(0);
-
-        mSlideViewpager.addOnPageChangeListener(viewListener); //adding on change page listener to our page
-    }
 
     // Adding dots
     public void addDotIndicator(int position) {
@@ -73,5 +84,31 @@ public class MainActivity extends AppCompatActivity {
         if (mDots.length > 0) {
             mDots[position].setTextColor(getResources().getColor(R.color.colorWhite));
         }
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        mSlideViewpager = findViewById(R.id.mainVP);
+        mDotLayout = findViewById(R.id.dotsLL);
+        mNext = findViewById(R.id.nextBtn);
+        mPrev = findViewById(R.id.previousBtn);
+
+        sliderAdapter = new SliderAdapter(this);
+        mSlideViewpager.setAdapter(sliderAdapter);
+        addDotIndicator(0);
+
+        mSlideViewpager.addOnPageChangeListener(viewListener); //adding on change page listener to our page
+    }
+
+    // Button click logic
+    public void prev(View view) {
+        mSlideViewpager.setCurrentItem(mCurrentPage - 1);
+    }
+
+    public void next(View view) {
+        mSlideViewpager.setCurrentItem(mCurrentPage + 1);
     }
 }
